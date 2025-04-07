@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Encoding Page</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 15px 20px;
+      font-size: 24px;
+      min-height:120px;
+      display: flex; 
+      align-items: center;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+      gap: 40px;
+    }
+
+    .preview-box {
+      min-width: 700px;
+      min-height: 700px;
+      max-width: 700px;
+      max-height: 700px;
+      border: 2px dashed #aaa;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: auto;
+    }
+
+    .preview-box img,
+    .preview-box iframe {
+      max-width: 100%;
+      max-height: 100%;
+      display: none;
+      transform-origin: center center;
+      transition: transform 0.3s ease;
+    }
+
+    iframe {
+      min-width: 680px;
+      min-height: 680px;
+      max-width: 680px;
+      max-height: 680px;
+      border: none;
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .controls label,
+    .controls button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .controls label:hover,
+    .controls button:hover {
+      background-color: #45a049;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .placeholder {
+      color: #888;
+      font-size: 16px;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="francis.jpg" style="width: 100px; border-radius: 50%; margin-right: 15px;">
+    <h1 style="font-family: Arial, sans-serif; font-size: 20px; margin: 0;">
+        Welcome, Miss Clarisa
+    </h1>
+</header>
+
+<main>
+
+</main>
+
+
+</body>
+</html>
