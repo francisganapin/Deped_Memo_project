@@ -239,13 +239,12 @@
   <img src="francis.jpg" alt="Admin Photo">
   <h1>Welcome, Miss Clarisa</h1>
 </header>
-
+ 
 <main>
 
   <!-- File Controls -->
   <div class="controls">
     <button onclick="window.location.href='{% url 'memo_upload_views' %}'">Upload</button>
-    <button>Edit</button>
     <button id="myBtnDelete" >Delete</button>
     <button id="myBtnTitle">Search</button>
 
@@ -260,6 +259,31 @@
         <div style="color: #007bff;" class="title">{{ item.title }}</div>
         <div class="description">{{ item.description }}</div>
         <div class="reference">{{ item.reference_data }}</div>
+        <button id="myBtnUpdate">Edit</button>
+        <button onclick="window.location.href='{% url 'memo_check_view' item.id %}'">View</button>
+        <div id="myModalUpdate" class="modal">
+
+          <!-- Modal content -->
+         <div class="modal-content">
+           <span id='closeUpdate' class="close">&times;</span>
+           <form action="{% url 'memo_update_views' item.id %}" method="POST" enctype="multipart/form-data">
+               {% csrf_token %}
+               <label>Enter Title</label><br>
+               <input type="text" name="title"><br>
+               <label>Description</label><br>
+               <input type="text" name="description"><br>
+               <label>reference</label><br>
+               <input type="text" name="reference"><br>
+               <label>File</label><br>
+               <input type="file" name="file"><br>
+               <label></label><br>
+               <button type="submit">Update</button>
+           </form>
+         </div>
+         
+         </div>
+         
+        
       </div>
       {% empty %}
       <p>No memos available.</p>
@@ -293,6 +317,7 @@
       <div style="color: #007bff;" class="title">{{ item.title }}</div>
       <div class="description">{{ item.description }}</div>
       <div class="reference">{{ item.reference_data }}</div>
+      <button id="myBtnUpdate">Edit</button>
     </div>
     {% endfor %}
   </div>
@@ -330,7 +355,7 @@
  </div>
  
  </div>
- 
+
 
 <!--- this will open our modal delete -->
 <script>
@@ -382,5 +407,28 @@
     }
   }
 </script>
+
+
+<!-- Script for Update Modal -->
+<script>
+  var modalUpdate = document.getElementById("myModalUpdate");
+  var btnUpdate = document.getElementById("myBtnUpdate");
+  var spanUpdate = document.getElementById("closeUpdate");
+
+  btnUpdate.onclick = function () {
+    modalUpdate.style.display = "block";
+  }
+
+  spanUpdate.onclick = function () {
+    modalUpdate.style.display = "none";
+  }
+
+  window.onclick = function (event) {
+    if (event.target == modalUpdate) {
+      modalUpdate.style.display = "none";
+    }
+  }
+</script>
+
 </body>
 </html>

@@ -38,28 +38,31 @@ def memo_page1_view(request):
 def memo_views_content(request,id):
 
     memo_entry = get_object_or_404(MemoTable,id=id)
+
     return render(request,'memo_content.html',{'memo_entry':memo_entry})
 
-def memo_views_content_download(request,id):
+#def memo_views_content_download(request,id):
 
-    response = HttpResponse(request,id)={
-        'Content-Typer':'application/pdf',
-        'Content-Disposition':f'attachment'; filename="{filename}"
-    }
+    #response = HttpResponse(request,id)={
+        #'Content-Typer':'application/pdf',
+        #'Content-Disposition':f'attachment'; filename="{filename}"
+    #}
 
-    return response
+    #return response
 
 # Create your views here.
+
+
 def memo_views(request):
-    memo_list = MemoTable.objects.filter(recent=False).values('title','description','reference_data','month','year','file')
-    memo_list_recent = MemoTable.objects.filter(recent=True).values('title','description','reference_data','month','year','file')
+    memo_list = MemoTable.objects.filter(recent=False).values('id','title','description','reference_data','month','year','file')
+    memo_list_recent = MemoTable.objects.filter(recent=True).values('id','title','description','reference_data','month','year','file')
     
 
     if request.method == 'POST':
         title_search = request.POST.get('title')
 
         if title_search:
-            memo_list = MemoTable.objects.filter(title=title_search).values('title','description','reference_data','month','year','file')
+            memo_list = MemoTable.objects.filter(title=title_search).values('id','title','description','reference_data','month','year','file')
 
     paginator = Paginator(memo_list,3)
     page_number = request.GET.get('page')
@@ -70,6 +73,27 @@ def memo_views(request):
 
 
 
+#fix this later for update 
+def memo_update_views(request,id):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        reference_data = request.POST.get('reference_data')
+        file = request.FILES.get('file')
+
+        memo = MemoTable.objects.get(id=id)
+
+        memo.title = title,
+        memo.description = description,
+        reference_data = reference_data,
+
+        if file:
+            memo.file = file
+            
+        memo.save()
+        return redirect('memo_views')
+
+    return render(request,'page3.html')
 
 def memo_upload_views(request):
     month = datetime.now().strftime("%m-%d")
@@ -108,3 +132,9 @@ def memo_delete_view(request):
         return redirect('memo_views') 
 
     return render(request, 'page3.html')
+
+
+def memo_check_view(request,id):
+
+    memo_entry = get_object_or_404(MemoTable,id=id)
+    return render(request,'memo_content_2.html',{'memo_entry':memo_entry})

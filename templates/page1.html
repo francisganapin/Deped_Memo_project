@@ -245,6 +245,7 @@
         <div style="color: #007bff;" class="title">{{ item.title }}</div>
         <div class="description">{{ item.description }}</div>
         <div class="reference">{{ item.reference_data }}</div>
+        <button onclick="window.location.href='{% url 'memo_views_content' item.id %}'">View</button>
       </div>
       {% empty %}
       <p>No memos available.</p>
