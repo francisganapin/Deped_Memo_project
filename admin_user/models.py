@@ -12,3 +12,5 @@ class MemoTable(models.Model):
     file = models.FileField(upload_to='pdf/')
 
   
+    class Meta:
+        dn_table = 'memo_table'
