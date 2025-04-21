@@ -1,26 +1,59 @@
-<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:\Users\francis\OneDrive\Desktop\flask\Deped\db.sqlite3" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="1"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="2872"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,20:mainadmin_user_memotable"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="admin_user_memotable" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="40"/><column index="3" value="80"/><column index="4" value="110"/><column index="5" value="49"/><column index="6" value="40"/><column index="7" value="51"/><column index="8" value="40"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">INSERT INTO admin_user_memotable (title, description, reference_data, month, year, recent, file) VALUES
-('Meeting Notes', 'Summary of the quarterly meeting.', 'Ref_001', 'January', '2025', TRUE, 'meeting_notes.pdf'),
-('Project Plan', 'Initial roadmap for the new project.', 'Ref_002', 'February', '2025', FALSE, 'project_plan.docx'),
-('Expense Report', 'Breakdown of company expenses.', 'Ref_003', 'March', '2025', TRUE, 'expense_report.xlsx'),
-('Event Schedule', 'List of upcoming corporate events.', 'Ref_004', 'April', '2025', FALSE, 'event_schedule.pdf'),
-('Team Roster', 'Current employee assignments.', 'Ref_005', 'May', '2025', TRUE, 'team_roster.csv'),
-('Client Feedback', 'Comments and reviews from clients.', 'Ref_006', 'June', '2025', FALSE, 'client_feedback.docx'),
-('Marketing Strategy', 'Outline of advertising approach.', 'Ref_007', 'July', '2025', TRUE, 'marketing_strategy.pptx'),
-('Training Guide', 'Manual for new hires.', 'Ref_008', 'August', '2025', FALSE, 'training_guide.pdf'),
-('Budget Allocation', 'Financial distribution for departments.', 'Ref_009', 'September', '2025', TRUE, 'budget_allocation.xlsx'),
-('Performance Review', 'Analysis of employee performance.', 'Ref_010', 'October', '2025', FALSE, 'performance_review.docx'),
-('Safety Protocols', 'Guidelines for workplace safety.', 'Ref_011', 'November', '2025', TRUE, 'safety_protocols.pdf'),
-('Supplier Contracts', 'Agreements with vendors.', 'Ref_012', 'December', '2025', FALSE, 'supplier_contracts.docx'),
-('HR Policies', 'Updated employee policies.', 'Ref_013', 'January', '2024', TRUE, 'hr_policies.pdf'),
-('Product Catalog', 'List of available products.', 'Ref_014', 'February', '2024', FALSE, 'product_catalog.xlsx'),
-('Workshop Agenda', 'Schedule for the upcoming seminar.', 'Ref_015', 'March', '2024', TRUE, 'workshop_agenda.pdf'),
-('IT Maintenance Log', 'Record of system updates.', 'Ref_016', 'April', '2024', FALSE, 'it_maintenance_log.docx'),
-('Annual Report', 'Summary of business performance.', 'Ref_017', 'May', '2024', TRUE, 'annual_report.pdf'),
-('Policy Updates', 'Revisions to corporate policies.', 'Ref_018', 'June', '2024', FALSE, 'policy_updates.docx'),
-('Sales Figures', 'Detailed sales performance data.', 'Ref_019', 'July', '2024', TRUE, 'sales_figures.xlsx'),
-('Procurement List', 'Items required for purchase.', 'Ref_020', 'August', '2024', FALSE, 'procurement_list.pdf'),
-('Technical Manual', 'Instructions for product assembly.', 'Ref_021', 'September', '2024', TRUE, 'technical_manual.docx'),
-('Audit Summary', 'Overview of financial audits.', 'Ref_022', 'October', '2024', FALSE, 'audit_summary.pdf'),
-('Legal Compliance', 'Checklist for regulatory requirements.', 'Ref_023', 'November', '2024', TRUE, 'legal_compliance.docx'),
-('User Feedback', 'Responses from customer survey.', 'Ref_024', 'December', '2024', FALSE, 'user_feedback.csv'),
-('Quarterly Goals', 'Objectives for the next quarter.', 'Ref_025', 'January', '2025', TRUE, 'quarterly_goals.pdf');</sql><current_tab id="0"/></tab_sql></sqlb_project>
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:\Users\francis\OneDrive\Desktop\flask\Deped\db.sqlite3" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="1"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="2872"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,10:mainmemo_table"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="memo_table" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="40"/><column index="3" value="80"/><column index="4" value="110"/><column index="5" value="49"/><column index="6" value="40"/><column index="7" value="51"/><column index="8" value="40"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">INSERT INTO memo_table (id, title, description, reference_data, month, year, recent, file)
+VALUES (1, 'January Financial Overview', 'Overview of finances for January 2025.', 'REF-JAN2025', 'January', '2025', 1, 'jan_financial.pdf');
+
+INSERT INTO memo_table (id, title, description, reference_data, month, year, recent, file)
+VALUES (2, 'February Meeting Summary', 'Summary of key discussions during the February meeting.', 'REF-FEB2025', 'February', '2025', 1, 'feb_meeting.pdf');
+
+INSERT INTO memo_table (id, title, description, reference_data, month, year, recent, file)
+VALUES (3, 'March Project Plan', 'Detailed plan for the new project initiated in March.', 'REF-MAR2025', 'March', '2025', 1, 'mar_project.docx');
+
+INSERT INTO memo_table (id, title, description, reference_data, month, year, recent, file)
+VALUES (4, 'April Budget Proposal', 'Proposed budget allocations for April 2025.', 'REF-APR2025', 'April', '2025', 1, 'apr_budget.pdf');
+
+INSERT INTO memo_table (id, title, description, reference_data, month, year, recent, file)
+VALUES (5, 'May Strategy Meeting', 'Highlights and action items from the May strategy meeting.', 'REF-MAY2025', 'May', '2025', 1, 'may_strategy.docx');
+
+INSERT INTO memo_table (id, title, description, reference_data, month, year, recent, file)
+VALUES (6, 'June Performance Review', 'Evaluation of employee performance conducted in June 2025.', 'REF-JUN2025', 'June', '2025', 0, 'jun_review.pdf');
+
+INSERT INTO memo_table (id, title, description, reference_data, month, year, recent, file)
+VALUES (7, 'July Client Feedback', 'Compilation of client feedback received in July.', 'REF-JUL2025', 'July', '2025', 0, 'jul_feedback.pdf');
+
+INSERT INTO memo_table (id, title, description, reference_data, month, year, recent, file)
+VALUES (8, 'August Market Analysis', 'Comprehensive market analysis report for August 2025.', 'REF-AUG2025', 'August', '2025', 1, 'aug_market.pdf');
+
+INSERT INTO memo_table (id, title, description, reference_data, month, year, recent, file)
+VALUES (9, 'September Innovation Ideas', 'Brainstorming session output and innovation ideas from September 2025.', 'REF-SEP2025', 'September', '2025', 0, 'sep_innov.docx');
+
+INSERT INTO memo_table (id, title, description, reference_data, month, year, recent, file)
+VALUES (10, 'October Product Launch', 'Documentation and details for the October 2025 product launch.', 'REF-OCT2025', 'October', '2025', 1, 'oct_launch.pdf');
+
+INSERT INTO memo_table (id, title, description, reference_data, month, year, recent, file)
+VALUES (11, 'November Year-End Summary', 'Preliminary summary outlining events leading up to year-end in November 2025.', 'REF-NOV2025', 'November', '2025', 1, 'nov_summary.pdf');
+
+INSERT INTO memo_table (id, title, description, reference_data, month, year, recent, file)
+VALUES (12, 'December Future Planning', 'Discussion notes and planning for the upcoming year from December meetings.', 'REF-DEC2025', 'December', '2025', 0, 'dec_planning.docx');
+
+INSERT INTO memo_table (id, title, description, reference_data, month, year, recent, file)
+VALUES (13, 'Special Executive Memo', 'Executive memo detailing major policy changes announced in March 2025.', 'REF-EXEC2025', 'March', '2025', 1, 'exec_memo.pdf');
+
+INSERT INTO memo_table (id, title, description, reference_data, month, year, recent, file)
+VALUES (14, 'Quarterly Performance Report Q1', 'Comprehensive performance report for the first quarter of 2025.', 'REF-Q1_2025', 'March', '2025', 0, 'q1_report.pdf');
+
+INSERT INTO memo_table (id, title, description, reference_data, month, year, recent, file)
+VALUES (15, 'Quarterly Performance Report Q2', 'Detailed review of company performance for the second quarter of 2025.', 'REF-Q2_2025', 'June', '2025', 1, 'q2_report.pdf');
+
+INSERT INTO memo_table (id, title, description, reference_data, month, year, recent, file)
+VALUES (16, 'Quarterly Performance Report Q3', 'Overview report of the third quarter performance in 2025.', 'REF-Q3_2025', 'September', '2025', 0, 'q3_report.pdf');
+
+INSERT INTO memo_table (id, title, description, reference_data, month, year, recent, file)
+VALUES (17, 'Quarterly Performance Report Q4', 'Summary report of the fourth quarter performance for 2025.', 'REF-Q4_2025', 'December', '2025', 1, 'q4_report.pdf');
+
+INSERT INTO memo_table (id, title, description, reference_data, month, year, recent, file)
+VALUES (18, 'HR Policy Update', 'Latest updates on HR policies released during mid-2025 sessions.', 'REF-HR2025', 'July', '2025', 0, 'hr_policy.pdf');
+
+INSERT INTO memo_table (id, title, description, reference_data, month, year, recent, file)
+VALUES (19, 'IT Security Briefing', 'Summary of IT security measures and protocols discussed in August 2025.', 'REF-IT2025', 'August', '2025', 1, 'it_security.pdf');
+
+INSERT INTO memo_table (id, title, description, reference_data, month, year, recent, file)
+VALUES (20, 'Marketing Strategy Overview', 'Overview of the marketing strategy laid out in November 2025.', 'REF-MKT2025', 'November', '2025', 0, 'marketing_strategy.pdf');</sql><current_tab id="0"/></tab_sql></sqlb_project>

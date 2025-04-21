@@ -13,4 +13,4 @@ class MemoTable(models.Model):
 
   
     class Meta:
-        dn_table = 'memo_table'
+        db_table = 'memo_table'

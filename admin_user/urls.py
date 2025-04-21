@@ -5,7 +5,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('page1/',views.memo_page1_view,name='memo_page1_views'),
+    path('',views.memo_page1_view,name='memo_page1_views'),
     path('page1/content/<int:id>',views.memo_views_content,name='memo_views_content'),
     path('page2/', views.memo_views, name='memo_views'),
     path('path2/check_memo/<int:id>',views.memo_check_view,name='memo_check_view'),
