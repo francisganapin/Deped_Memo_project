@@ -1,0 +1,16 @@
+1	January Financial Overview	Overview of finances for January 2025.	REF-JAN2025	January	2025	1	pdf/Answer2.png
+6	June Performance Review	Evaluation of employee performance conducted in June 2025.	REF-JUN2025	June	2024	0	pdf/Answer2.png
+7	July Client Feedback	Compilation of client feedback received in July.	REF-JUL2025	July	2024	0	pdf/Answer2.png
+8	August Market Analysis	Comprehensive market analysis report for August 2025.	REF-AUG2025	August	2024	0	pdf/Answer2.png
+9	September Innovation Ideas	Brainstorming session output and innovation ideas from September 2025.	REF-SEP2025	September	2024	0	pdf/Answer2.png
+10	October Product Launch	Documentation and details for the October 2025 product launch.	REF-OCT2025	October	2024	0	pdf/Answer2.png
+11	November Year-End Summary	Preliminary summary outlining events leading up to year-end in November 2025.	REF-NOV2025	November	2024	0	pdf/Answer2.png
+12	December Future Planning	Discussion notes and planning for the upcoming year from December meetings.	REF-DEC2025	December	2024	0	pdf/Answer2.png
+13	Special Executive Memo	Executive memo detailing major policy changes announced in March 2025.	REF-EXEC2025	March	2024	0	pdf/Answer2.png
+14	Quarterly Performance Report Q1	Comprehensive performance report for the first quarter of 2025.	REF-Q1_2025	March	2024	0	pdf/Answer2.png
+15	Quarterly Performance Report Q2	Detailed review of company performance for the second quarter of 2025.	REF-Q2_2025	June	2024	0	pdf/Answer2.png
+16	Quarterly Performance Report Q3	Overview report of the third quarter performance in 2025.	REF-Q3_2025	September	2024	0	pdf/Answer2.png
+17	Quarterly Performance Report Q4	Summary report of the fourth quarter performance for 2025.	REF-Q4_2025	December	2024	0	pdf/Answer2.png
+18	HR Policy Update	Latest updates on HR policies released during mid-2025 sessions.	REF-HR2025	July	2024	0	pdf/Answer2.png
+19	IT Security Briefing	Summary of IT security measures and protocols discussed in August 2025.	REF-IT2025	August	2024	0	pdf/Answer2.png
+20	Marketing Strategy Overview	Overview of the marketing strategy laid out in November 2025.	REF-MKT2025	November	2024	0	pdf/Answer2.png

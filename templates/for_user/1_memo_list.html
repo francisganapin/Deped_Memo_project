@@ -2,12 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Admin Encoding Page</title>
+  <title>Page 1</title>
+
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
 
     body {
       margin: 0;
@@ -46,7 +43,7 @@
       display: flex;
       flex-direction: column;
       gap: 15px;
-      margin-left: -500px; 
+  
     }
 
     .controls button {
@@ -65,11 +62,10 @@
     }
 
     .directive {
-     background-color: #F4F5F0;
-
-      padding: 20px;
+      background: #F4F5F0;
+      padding: 18px;
       border-left: 5px solid #007bff;
-      margin-bottom: 20px;
+      margin-bottom:25px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
       border-radius: 8px;
       transition: transform 0.2s ease;
@@ -103,12 +99,12 @@
     }
 
     .memo {
-      max-width: 600px;
+      max-width: 1500px;
       flex: 2;
       background-color: #EEEBE3;
       padding: 25px;
       border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(56, 36, 36, 0.08);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 
       display: flex;
       flex-direction: column;
@@ -118,15 +114,6 @@
 
     .memo-content {
       flex-grow: 1;
-    }
-
-    .recent_memo {
-      max-width: 350px;
-      flex: 1;
-      background-color: #EEEBE3;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     }
 
     .recent_memo h2 {
@@ -195,13 +182,87 @@
 <body>
 
 <header>
-  <img src="francis.jpg" alt="Admin Photo">
-  <h1>Welcome, Miss Clarisa</h1>
+  <h1>DepEd Memo</h1>
 </header>
 
 <main>
+<form action="{% url 'memo_page1_views' %}" method="POST" enctype="multipart/form-data" >
+    {% csrf_token %}
+  <!-- File Controls -->
+  <div class="controls">
+    
+    <label for="title">Search Title</label>
 
-</main>
+    <input type="text" name="title">
+
+
+
+    
+    <label for="month">Select a Month</label>
+    <select id="month" name="month">
+        <option value="">--Select All--</option>
+        <option value="January">January</option>
+        <option value="February">February</option>
+        <option value="March">March</option>
+        <option value="April">April</option>
+        <option value="May">May</option>
+        <option value="June">June</option>
+        <option value="July">July</option>
+        <option value="August">August</option>
+        <option value="September">September</option>
+        <option value="October">October</option>
+        <option value="November">November</option>
+        <option value="December">December</option>
+    </select>
+
+
+    <label for="year">Select a Year:</label>
+    <input type="number" id="year" name="year" min="2000" max="2035" step="1">
+
+
+    <button>Submit</button>
+  </div>
+</form>
+  <!-- Main Memo Section -->
+  <div class="memo">
+    <div class="memo-content">
+      {% for item in page_obj %}
+      <div class="directive">
+
+      <a href="{% url 'memo_views_content' page_obj.number  item.id %}">
+        <div style="color: #007bff;" class="title">{{ item.title }}</div>
+      </a>
+        <div class="date">{{ item.month}} {{ item.year }}</div>
+        <div class="description">{{ item.description }}</div>
+        <div class="reference">{{ item.reference_data }}</div>
+       
+      </div>
+      {% empty %}
+      <p>No memos available.</p>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination inside memo -->
+    <div class="pagination">
+      <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span><br><br>
+
+      {% if page_obj.has_previous %}
+        <a href="?page=1">First</a>
+        <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% endif %}
+
+ 
+
+      {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif %}
+    </div>
+  </div>
+
+
+</div>
+
 
 </body>
 </html>

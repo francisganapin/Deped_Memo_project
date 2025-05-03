@@ -21,7 +21,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 STATIC_URL = '/static/'
-STATIC_DIRS = [BASE_DIR/'static']
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -44,7 +44,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "admin_user"
+
+    #this is our model that can access of both
+    "b2_dep_model",
+
+    #this is our function
+    "a1_admin_user",
+    "a2_public_function",
+    
 ]
 
 MIDDLEWARE = [

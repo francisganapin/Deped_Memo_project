@@ -1,237 +1,18 @@
+{% load static %}
+<link href="{% static 'admin/page2.css' %}" rel="stylesheet">
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Admin Encoding Page</title>
   <!--style for our modal-->
-  <style>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
 
-    /* The Modal (background) */
-    .modal {
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 1; /* Sit on top */
-      padding-top: 100px; /* Location of the box */
-      left: 0;
-      top: 0;
-      width: 50%; /* Full width */
-      height: 100%; /* Full height */
-      overflow: auto; /* Enable scroll if needed */
-      background-color: rgb(0,0,0); /* Fallback color */
-      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
-    
-    /* Modal Content */
-    .modal-content {
-      background-color: #fefefe;
-      margin: auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-    }
-    
-    /* The Close Button */
-    .close {
-      color: #aaaaaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-    
-    .close:hover,
-    .close:focus {
-      color: #000;
-      text-decoration: none;
-      cursor: pointer;
-    }
-    </style>
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #f3f6f9;
-    }
-
-    header {
-      background-color: #2c3e50;
-      color: white;
-      padding: 12px 24px;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    header img {
-      width: 60px;
-      height: 60px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-right: 20px;
-    }
-
-    main {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 40px;
-      gap: 40px;
-    }
-
-    .controls {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-left: -100px; 
-    }
-
-    .controls button {
-      background-color: #6a1b9a;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s ease;
-    }
-
-    .controls button:hover {
-      background-color: #8e24aa;
-    }
-
-    .directive {
-      background: white;
-      padding: 20px;
-      border-left: 5px solid #007bff;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      border-radius: 8px;
-      transition: transform 0.2s ease;
-    }
-
-    .directive:hover {
-      transform: scale(1.02);
-    }
-
-    .directive .date {
-      font-weight: bold;
-      color: #555;
-    }
-
-    .directive .title {
-      font-size: 20px;
-      font-weight: bold;
-      margin-top: 5px;
-      color: #333;
-    }
-
-    .directive .description {
-      margin-top: 10px;
-      color: #444;
-    }
-
-    .directive .reference {
-      margin-top: 10px;
-      font-style: italic;
-      color: #888;
-    }
-
-    .memo {
-      max-width: 1100px;
-      flex: 2;
-      background-color: #ffffff;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 700px; /* adjust height as needed */
-    }
-
-    .memo-content {
-      flex-grow: 1;
-    }
-
-    .recent_memo {
-      max-width: 350px;
-      flex: 1;
-      background-color: #ffffff;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    }
-
-    .recent_memo h2 {
-      margin-top: 0;
-      color: #007bff;
-      font-size: 22px;
-      border-bottom: 2px solid #007bff;
-      padding-bottom: 10px;
-      margin-bottom: 20px;
-    }
-
-    .pagination {
-      width: 100%;
-      text-align: center;
-      font-size: 16px;
-      min-height: 60px;
-      padding: 10px 0;
-      margin-top: 30px;
-    }
-
-    .pagination a {
-      margin: 0 5px;
-      text-decoration: none;
-      padding: 6px 12px;
-      color: #007bff;
-      border: 1px solid #007bff;
-      border-radius: 4px;
-      transition: background-color 0.3s;
-    }
-
-    .pagination a:hover {
-      background-color: #007bff;
-      color: white;
-    }
-
-    .pagination strong {
-      margin: 0 5px;
-      padding: 6px 12px;
-      background-color: #007bff;
-      color: white;
-      border-radius: 4px;
-    }
-
-    @media (max-width: 768px) {
-      main {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .controls {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-        margin-bottom: 20px;
-        margin-left: 0;
-      }
-
-      .memo, .recent_memo {
-        width: 100%;
-        max-width: none;
-      }
-    }
-  </style>
 </head>
 <body>
 
@@ -245,11 +26,18 @@
   <!-- File Controls -->
   <div class="controls">
     <button onclick="window.location.href='{% url 'memo_upload_views' %}'">Upload</button>
-    <button id="myBtnDelete" >Delete</button>
-    <button id="myBtnTitle">Search</button>
 
+
+        <!-- Button trigger Delete modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#DeleteModal">
+    Delete
+  </button>
+      <!-- Button trigger Search modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#SearchModal">
+   Search 
+  </button>
+ 
   </div>
-
   <!-- Main Memo Section -->
   <div class="memo">
     <div class="memo-content">
@@ -259,32 +47,53 @@
         <div style="color: #007bff;" class="title">{{ item.title }}</div>
         <div class="description">{{ item.description }}</div>
         <div class="reference">{{ item.reference_data }}</div>
-        <button id="myBtnUpdate">Edit</button>
-        <button onclick="window.location.href='{% url 'memo_check_view' item.id %}'">View</button>
-        <div id="myModalUpdate" class="modal">
-
-          <!-- Modal content -->
-         <div class="modal-content">
-           <span id='closeUpdate' class="close">&times;</span>
-           <form action="{% url 'memo_update_views' item.id %}" method="POST" enctype="multipart/form-data">
-               {% csrf_token %}
-               <label>Enter Title</label><br>
-               <input type="text" name="title"><br>
-               <label>Description</label><br>
-               <input type="text" name="description"><br>
-               <label>reference</label><br>
-               <input type="text" name="reference"><br>
-               <label>File</label><br>
-               <input type="file" name="file"><br>
-               <label></label><br>
-               <button type="submit">Update</button>
-           </form>
-         </div>
-         
-         </div>
-         
-        
+           <!-- Button trigger Edit modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditModal">
+         Update
+        </button>
+        <button  class='btn btn-primary' onclick="window.location.href='{% url 'memo_check_view' item.id %}'">View</button>
       </div>
+
+                
+      <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="EditModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content shadow-lg rounded-3">
+            <div class="modal-header bg-primary text-white">
+              <h5 class="modal-title" id="EditModalLabel">Update Memo</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+              <form action="{% url 'memo_update_views' item.id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="titleInput" class="form-label">Title</label>
+                  <input type="text" name="title" class="form-control" id="titleInput" placeholder="Enter memo title">
+                </div>
+                <div class="mb-3">
+                  <label for="descriptionInput" class="form-label">Description</label>
+                  <input type="text" name="description" class="form-control" id="descriptionInput" placeholder="Enter description">
+                </div>
+                <div class="mb-3">
+                  <label for="referenceInput" class="form-label">Reference</label>
+                  <input type="text" name="reference" class="form-control" id="referenceInput" placeholder="Enter reference">
+                </div>
+                <div class="mb-3">
+                  <label for="fileInput" class="form-label">File Upload</label>
+                  <input type="file" name="file" class="form-control" id="fileInput">
+                </div>
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-success">Update Memo</button>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <small class="text-muted">Please make sure all fields are correct before submitting.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
       {% empty %}
       <p>No memos available.</p>
       {% endfor %}
@@ -319,116 +128,72 @@
       <div class="reference">{{ item.reference_data }}</div>
       <button id="myBtnUpdate">Edit</button>
     </div>
+    
     {% endfor %}
   </div>
 
 </main>
 
-<!-- The Modal -->
-<div id="myModalDelete" class="modal">
 
- <!-- Modal content -->
-<div class="modal-content">
-  <span class="close">&times;</span>
-  <form action="{% url 'memo_delete_views' %}" method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-      <label>Enter ID You Want to Delete</label>
-      <input type="text" name="reference_data" required>
-      <button type="submit">Delete</button>
-  </form>
+
+<!-- search Modal -->
+
+<div class="modal fade" id="SearchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg rounded-3">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="EditModalLabel">Search Title</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body p-4">
+          <form action="{% url 'memo_views' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="titleInput" class="form-label">Title</label>
+            <input type="text" name="title" class="form-control" id="titleInput" placeholder="Enter Memo Title">
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-success">Search Memo</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer justify-content-between">
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+
+
+<div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg rounded-3">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="EditModalLabel">Delete Memo</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body p-4">
+          <form action="{% url 'memo_delete_views' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="titleInput" class="form-label">Reference</label>
+            <input type="text" name="reference_data" class="form-control" id="titleInput" placeholder="Enter Memo Reference">
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-success">Delete Memo</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <small class="text-muted">Please make sure all fields are correct before submitting.</small>
+      </div>
+    </div>
+  </div>
 </div>
 
-</div>
-
-
-<div id="myModalTitle" class="modal">
-
-  <!-- Modal content -->
- <div class="modal-content">
-   <span id='closeTitle' class="close">&times;</span>
-   <form action="{% url 'memo_views' %}" method="POST" enctype="multipart/form-data">
-       {% csrf_token %}
-       <label>Enter Title</label>
-       <input type="text" name="title" required>
-       <button type="submit">search</button>
-   </form>
- </div>
- 
- </div>
-
-
-<!--- this will open our modal delete -->
-<script>
-  // Get the modal
-  var modal = document.getElementById("myModalDelete");
-  
-  // Get the button that opens the modal
-  var btn = document.getElementById("myBtnDelete");
-  
-  // Get the <span> element that closes the modal
-  var span = document.getElementsByClassName("close")[0];
-  
-  // When the user clicks the button, open the modal 
-  btn.onclick = function() {
-    modal.style.display = "block";
-  }
-  
-  // When the user clicks on <span> (x), close the modal
-  span.onclick = function() {
-    modal.style.display = "none";
-  }
-  
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-  </script>
-
-<!--- this will open our modal delete -->
-<!-- Script for Title Modal -->
-<script>
-  var modalTitle = document.getElementById("myModalTitle");
-  var btnTitle = document.getElementById("myBtnTitle");
-  var spanTitle = document.getElementById("closeTitle");
-
-  btnTitle.onclick = function () {
-    modalTitle.style.display = "block";
-  }
-
-  spanTitle.onclick = function () {
-    modalTitle.style.display = "none";
-  }
-
-  window.onclick = function (event) {
-    if (event.target == modalTitle) {
-      modalTitle.style.display = "none";
-    }
-  }
-</script>
-
-
-<!-- Script for Update Modal -->
-<script>
-  var modalUpdate = document.getElementById("myModalUpdate");
-  var btnUpdate = document.getElementById("myBtnUpdate");
-  var spanUpdate = document.getElementById("closeUpdate");
-
-  btnUpdate.onclick = function () {
-    modalUpdate.style.display = "block";
-  }
-
-  spanUpdate.onclick = function () {
-    modalUpdate.style.display = "none";
-  }
-
-  window.onclick = function (event) {
-    if (event.target == modalUpdate) {
-      modalUpdate.style.display = "none";
-    }
-  }
-</script>
 
 </body>
 </html>
