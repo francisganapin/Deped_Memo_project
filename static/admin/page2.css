@@ -59,10 +59,10 @@
   }
 
   .directive {
-    background: white;
-    padding: 20px;
+    background: #F4F5F0;
+    padding: 10px;
     border-left: 5px solid #007bff;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     border-radius: 8px;
     transition: transform 0.2s ease;
@@ -131,6 +131,10 @@
     margin-bottom: 20px;
   }
 
+  .pagination_display{
+    display:flex;
+    justify-content:center;
+  }
   .pagination {
     width: 100%;
     text-align: center;

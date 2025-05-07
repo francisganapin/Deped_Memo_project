@@ -1,3 +1,6 @@
+5/7/2025
+    fix the page css 
+
 5/3/2025
     fix our url
     update memo page

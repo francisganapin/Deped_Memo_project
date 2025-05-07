@@ -63,7 +63,7 @@
 
     .directive {
       background: #F4F5F0;
-      padding: 18px;
+      padding:12px;
       border-left: 5px solid #007bff;
       margin-bottom:25px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -84,6 +84,7 @@
       font-size: 20px;
       font-weight: bold;
       margin-top: 5px;
+      margin-bottom:5px;
       color: #333;
     }
 
@@ -109,7 +110,8 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 700px; /* adjust height as needed */
+      min-height:650px; /* adjust height as needed */
+      max-height:650px; /* adjust height as needed */
     }
 
     .memo-content {
@@ -130,8 +132,6 @@
       text-align: center;
       font-size: 16px;
       min-height: 60px;
-      padding: 10px 0;
-      margin-top: 30px;
     }
 
     .pagination a {
@@ -242,24 +242,23 @@
       {% endfor %}
     </div>
 
-    <!-- Pagination inside memo -->
-    <div class="pagination">
-      <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span><br><br>
-
-      {% if page_obj.has_previous %}
-        <a href="?page=1">First</a>
-        <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
-      {% endif %}
-
- 
-
-      {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}">Next</a>
-        <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-      {% endif %}
-    </div>
   </div>
+   <!-- Pagination inside memo -->
+   <div class="pagination">
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span><br><br>
 
+    {% if page_obj.has_previous %}
+      <a href="?page=1">First</a>
+      <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+
+
+
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">Next</a>
+      <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+    {% endif %}
+  </div>
 
 </div>
 

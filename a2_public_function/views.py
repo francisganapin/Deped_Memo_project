@@ -19,6 +19,7 @@ def memo_page1_view(request):
         if month_search:
             print(month_search)
             memo_list = MemoTable.objects.filter(month=month_search).values('id','title','description','reference_data','month','year','file')
+
         if year_search:
             print(year_search)
             memo_list = MemoTable.objects.filter(year=year_search).values('id','title','description','reference_data','month','year','file')
