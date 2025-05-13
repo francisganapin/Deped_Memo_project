@@ -1,5 +1,5 @@
-{% load static %}
-<link href="{% static 'admin/page2.css' %}" rel="stylesheet">
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +15,177 @@
 
   
 <style>
-.directive {
+  * {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #f3f6f9;
+  }
+
+
+  header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 12px 24px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 20px;
+    }
+
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px;
+    gap: 40px;
+  }
+
+  .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-left: -100px; 
+  }
+
+  .controls button {
+    background-color: #6a1b9a;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+
+  .controls button:hover {
+    background-color: #8e24aa;
+  }
+
+  .directive {
+    background: #F4F5F0;
+    padding: 10px;
+    border-left: 5px solid #007bff;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+  }
+
+  .directive:hover {
+    transform: scale(1.02);
+  }
+
+  .directive .date {
+    font-weight: bold;
+    color: #555;
+  }
+
+  .directive .title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5px;
+    color: #333;
+  }
+
+  .directive .description {
+    margin-top: 10px;
+    color: #444;
+  }
+
+  .directive .reference {
+    margin-top: 10px;
+    font-style: italic;
+    color: #888;
+  }
+
+  .memo {
+    max-width: 1100px;
+    flex: 2;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 700px; /* adjust height as needed */
+  }
+
+  .memo-content {
+    flex-grow: 1;
+  }
+
+  .recent_memo {
+    max-width: 350px;
+    flex: 1;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  }
+
+  .recent_memo h2 {
+    margin-top: 0;
+    color: #007bff;
+    font-size: 22px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+
+  .pagination_display{
+    display:flex;
+    justify-content:center;
+  }
+  .pagination {
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    min-height: 60px;
+    padding: 10px 0;
+    margin-top: 30px;
+  }
+
+  .pagination a {
+    margin: 0 5px;
+    text-decoration: none;
+    padding: 6px 12px;
+    color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+
+  .pagination a:hover {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .pagination strong {
+    margin: 0 5px;
+    padding: 6px 12px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+  }
+
+  .directive {
     background: #F4F5F0;
     padding: 5px;
     margin-bottom: 15px;
@@ -28,14 +198,36 @@
 }
 
 
+
+  @media (max-width: 768px) {
+    main {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .controls {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      margin-left: 0;
+    }
+
+    .memo, .recent_memo {
+      width: 100%;
+      max-width: none;
+    }
+  }
+
 </style>
 
 </head>
 <body>
 
 <header>
-  <img src="francis.jpg" alt="Admin Photo">
-  <h1>Welcome, {{user}}
+  <img src="{{user.image.url}}" alt="Admin Photo">
+  <h1>Welcome, {{user.first_name}}, {{user.last_name}}
   </h1>
 </header>
  
@@ -96,13 +288,20 @@
                   <label for="referenceInput" class="form-label">Reference</label>
                   <input type="text" name="reference" class="form-control" id="referenceInput" placeholder="{{item.reference_data}}">
                 </div>
-                <div class="mb-3">
-                  <label for="fileInput" class="form-label">File Upload</label>
-                  <input type="file" name="file" class="form-control" id="fileInput">
-                </div>
-                <div class="d-grid">
-                  <button type="submit" class="btn btn-success">Update Memo</button>
-                </div>
+
+
+                <!---- button  -->
+                  <div>
+                    <div class="mb-3">
+                      <label for="fileInput" class="form-label">File Upload</label>
+                      <input type="file" name="file" class="form-control" id="fileInput">
+                    </div>
+                    <div class="d-grid">
+                      <button type="submit" class="btn btn-success">Update Memo</button>
+                    </div>
+                  </div>
+              <!---- button  -->
+              
               </form>
             </div>
             <div class="modal-footer justify-content-between">

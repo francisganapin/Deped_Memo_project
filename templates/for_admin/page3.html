@@ -1,17 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Admin Encoding Page</title>
-  <style>
+ 
 
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #f3f6f9;
-    }
+ {% load static %}
+ <link href="{% static 'admin/page2.css' %}" rel="stylesheet">
+ 
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <title>Admin Encoding Page</title>
+   <!--style for our modal-->
+   
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
+ 
+   
+ <style>
 
-    header {
+header {
       background-color: #2c3e50;
       color: white;
       padding: 12px 24px;
@@ -29,13 +36,8 @@
       margin-right: 20px;
     }
 
-    main {
-      display: flex;
-      justify-content: center;
-      padding: 40px;
-    }
 
-    form {
+  form {
       display: flex;
       gap: 40px;
       background-color: #fff;
@@ -43,7 +45,9 @@
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       min-width:1200px;
+      max-width:1200px;
       min-height:700px;
+      max-height:700px;
     }
 
     .row-left,
@@ -126,7 +130,7 @@
       font-size: 16px;
     }
 
-    button[type="submit"] {
+    button[type="submit"], button[type="button"]{
       margin-top: 20px;
       background-color: #333;
       color: white;
@@ -135,21 +139,29 @@
       border-radius: 5px;
       font-size: 16px;
       cursor: pointer;
-      width: 100%;
+      width: 70%;
     }
 
     button[type="submit"]:hover {
       background-color: #222;
     }
 
-  </style>
-</head>
+    .zoom_div{
+      flex:flex;
+      flex-wrap:nowrap;
+    }
+ </style>
+ 
+ </head>
+
+
 <body>
 
-<header>
-  <img src="Untitled.png" alt="Logo">
-  <h1>Welcome, Miss Clarisa</h1>
-</header>
+  <header>
+    <img src="{{user.image.url}}" alt="Admin Photo">
+    <h1>Welcome, {{user.first_name}}, {{user.last_name}}
+    </h1>
+  </header>
 
 <main>
   <form action="{% url 'memo_upload_views' %}" method="POST" enctype="multipart/form-data">
@@ -174,15 +186,20 @@
       <input type="text" id="reference" name="reference" maxlength="50" required>
 
       <div class="controls">
-        <label for="fileInput">Browse</label>
-        <input type="file" id="fileInput" name="file" accept="application/pdf,image/*">
-        <button type="button" onclick="zoomIn()">Zoom In</button>
-        <button type="button" onclick="zoomOut()">Zoom Out</button>
+          <label for="fileInput">Browse</label>
+          <input type="file" id="fileInput" name="file" accept="application/pdf,image/*">
+      </div>
+
+      <div class="zoom_div">
+     
+    
+        <button onclick="zoomIn()">Zoom In</button>
+        <button onclick="zoomOut()">Zoom Out</button>
+
       </div>
 
       <button type="submit">Submit</button>
 
-      <button >Submit</button>
     </div>
   </form>
 </main>

@@ -24,13 +24,13 @@ def memo_views(request):
         title_search = request.POST.get('title')
 
         if title_search:
-            memo_list = MemoTable.objects.filter(title=title_search).values('id','title','description','reference_data','month','year','file')
+            memo_list = MemoTable.objects.filter(title__icontains=title_search).values('id','title','description','reference_data','month','year','file')
 
     paginator = Paginator(memo_list,3)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
-    return render(request,'page2.html',{"page_obj": page_obj,'memo_list_recent':memo_list_recent})
+    return render(request,'for_admin/admin-page.html',{"page_obj": page_obj,'memo_list_recent':memo_list_recent})
 
 
 
@@ -56,7 +56,7 @@ def memo_update_views(request,id):
         memo.save()
         return redirect('memo_views')
 
-    return render(request,'page3.html')
+    return render(request,'for_admin/page3.html')
 
 def memo_upload_views(request):
     month = datetime.now().strftime("%m-%d")
@@ -80,7 +80,7 @@ def memo_upload_views(request):
         print(f'data was save{title},{description},{reference_data},{file}')
         return redirect('memo_views')
 
-    return render(request,'page3.html')
+    return render(request,'for_admin/page3.html')
 
 
 def memo_delete_view(request):
@@ -94,10 +94,10 @@ def memo_delete_view(request):
 
         return redirect('memo_views') 
 
-    return render(request, 'page3.html')
+    return render(request, 'for_admin/page3.html')
 
 
 def memo_check_view(request,id):
 
     memo_entry = get_object_or_404(MemoTable,id=id)
-    return render(request,'memo_content_2.html',{'memo_entry':memo_entry})
+    return render(request,'for_admin/memo_content_2.html',{'memo_entry':memo_entry})
