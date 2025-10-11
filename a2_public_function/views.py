@@ -7,29 +7,47 @@ from django.core.paginator import Paginator
 def memo_page1_view(request):
     memo_list = MemoTable.objects.filter(recent=False).values('id','title','description','reference_data','month','year','file')
 
+    title_search = None
+    month_search = None
+    year_search = None
+    page_number = request.GET.get('page') or request.POST.get('page')
+
     if request.method == 'POST':
         title_search = request.POST.get('title')
         month_search = request.POST.get('month')
         year_search = request.POST.get('year')
+        
+        filters = {'recent':False}
+
+        #apply filter if provided
 
         if title_search:
             print(title_search)
-            memo_list = MemoTable.objects.filter(title=title_search).values('id','title','description','reference_data','month','year','file')
+            filters['title__contains'] = title_search
 
         if month_search:
             print(month_search)
-            memo_list = MemoTable.objects.filter(month=month_search).values('id','title','description','reference_data','month','year','file')
+            filters['month'] = month_search
 
         if year_search:
             print(year_search)
-            memo_list = MemoTable.objects.filter(year=year_search).values('id','title','description','reference_data','month','year','file')
+            filters['year'] = year_search
+
+        memo_list = (
+            MemoTable.objects.filter(**filters).values('id','title','description','reference_data','month','year','file')
+        )
 
 
     paginator = Paginator(memo_list,4)
-    page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
-    return render(request,'for_user/1_memo_list.html',{"page_obj": page_obj,})
+    return render(request,'for_user/1_memo_list.html',{
+        "page_obj": page_obj,
+        'title_search':title_search or '',
+        'month_search':month_search or '',
+        'year_search':year_search or '',
+                                                       
+            })
 
 
 

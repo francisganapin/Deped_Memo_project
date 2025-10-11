@@ -182,7 +182,7 @@
 <body>
 
 <header>
-  <h1>DepEd Memo</h1>
+  <h1>DeMEd Memo</h1>
 </header>
 
 <main>
@@ -219,6 +219,10 @@
     <label for="year">Select a Year:</label>
     <input type="number" id="year" name="year" min="2000" max="2035" step="1">
 
+    <label for="page">Select Page</label>
+     <!-- Optional direct page jump -->
+  <input type="number" name="page" min="1" max="{{ page_obj.paginator.num_pages }}" placeholder="Page #">
+
 
     <button>Submit</button>
   </div>
@@ -226,6 +230,8 @@
   <!-- Main Memo Section -->
   <div class="memo">
     <div class="memo-content">
+
+      
       {% for item in page_obj %}
       <div class="directive">
 
@@ -260,6 +266,7 @@
     {% endif %}
   </div>
 
+  
 </div>
 
 

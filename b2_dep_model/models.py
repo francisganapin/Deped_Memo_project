@@ -18,6 +18,7 @@ class MemoTable(models.Model):
   
     class Meta:
         db_table = 'memo_table'
+        ordering = ['-month']
 
 
 

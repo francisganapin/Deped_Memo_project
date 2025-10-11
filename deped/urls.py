@@ -23,5 +23,6 @@ urlpatterns = [
 
 
     path('',include('a2_public_function.urls')),
-    path('',include('a1_admin_user.urls'))
+    path('',include('a1_admin_user.urls')),
+    path('__debug__/',include("debug_toolbar.urls")),
 ]
