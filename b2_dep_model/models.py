@@ -4,24 +4,77 @@ from django.utils import timezone
 from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import gettext_lazy as lazy_text
 
-
+from django.core.validators import FileExtensionValidator
+from django.utils import timezone
 
 class MemoTable(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField(max_length=255)
-    reference_data = models.CharField(max_length=50)
-    month = models.CharField(max_length=50)
-    year = models.CharField(max_length=50)
-    recent = models.BooleanField(default=True)  
-    file = models.FileField(upload_to='pdf/')
+    title = models.CharField(max_length=255,
+    help_text = 'Memo title (max 25 characters)'
+    
+    
+    )
+    description = models.TextField(max_length=255,
+        help_text = 'Detailed description of the memo'
+    )
+    reference_data = models.CharField(
+        max_length = 50,
+        unique=True,
+        db_index=True,
+        help_text = 'Reference data (max 50 characters)'
+    )
+    month = models.CharField(
+        max_length=50,
+        db_index=True,
+        help_text = 'Month of the memo'
+    
+    )
+    year = models.CharField(
+        max_length=50,
+        db_index = True,
+        help_text = 'Year of the memo'
+        )
+    
+    recent = models.BooleanField(
+        default=True,
+        db_index=True,
+        help_text = 'Recent memo'
+        
+        )  
+    file = models.FileField(
+        upload_to='pdf/',
+        validators=[FileExtensionValidator(allowed_extensions=['pdf'])],
+        help_text="PDF file only, max 10MB"
+    )
+
+    created_at = models.DateTimeField(
+        auto_now=True,
+        help_text='When the nemo was lasted updated'
+    )
+
+
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        help_text='When the memo was lasted updated'
+    )
 
   
     class Meta:
         db_table = 'memo_table'
         ordering = ['-month']
+        verbose_name = 'Memo'
+        verbose_name_plural = 'Memo'
 
+        indexes = [
+            models.Index(fields=['month', 'year']),
+            models.Index(fields=['recent', '-created_at']),
+            models.Index(fields=['title']),
+        ]
 
+    def __str__(self):
+        return f'{self.reference_data} - {self.title}'
 
+    def __repr__(self):
+        return f"Memo: {self.reference_data}"
 
 class CustomUserManager(BaseUserManager):
     """

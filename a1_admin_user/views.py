@@ -46,9 +46,9 @@ def memo_update_views(request,id):
 
         memo = MemoTable.objects.get(id=id)
 
-        memo.title = title,
-        memo.description = description,
-        reference_data = reference_data,
+        memo.title = title
+        memo.description = description
+        memo.reference_data = reference_data
 
         if file:
             memo.file = file
@@ -58,29 +58,49 @@ def memo_update_views(request,id):
 
     return render(request,'for_admin/page3.html')
 
+from django.db import IntegrityError
+from django.contrib import messages
+from datetime import datetime
+
 def memo_upload_views(request):
-    month = datetime.now().strftime("%m-%d")
-    year = datetime.now().strftime("%y")
+    month = datetime.now().strftime("%B")
+    year = datetime.now().strftime("%Y")
+
     if request.method == 'POST':
-        title = request.POST.get('title')
-        description = request.POST.get('description')
-        reference_data = request.POST.get('reference')
-        file = request.FILES.get('file')
-        
-        MemoTable.objects.update(recent=False)
+        try:
+            title = request.POST.get('title')
+            description = request.POST.get('description')
+            reference_data = request.POST.get('reference')
+            file = request.FILES.get('file')
 
-        MemoTable.objects.create(
-            title=title,
-            description=description,
-            month = month,
-            year = year,
-           reference_data=reference_data,
-            file=file
-        )
-        print(f'data was save{title},{description},{reference_data},{file}')
-        return redirect('memo_views')
 
-    return render(request,'for_admin/page3.html')
+            MemoTable.objects.update(recent=False)
+
+  
+            MemoTable.objects.create(
+                title=title,
+                description=description,
+                month=month,
+                year=year,
+                reference_data=reference_data,
+                file=file,
+                recent=True
+            )
+
+            print(f"data was saved: {title}, {description}, {reference_data}, {file}")
+            messages.success(request, 'Memo uploaded successfully')
+            return redirect('memo_views')
+
+        except IntegrityError:
+            messages.error(request, 'A memo with this reference already exists')
+            return redirect('memo_views')
+
+        except Exception as e:
+            messages.error(request, f'Error uploading memo: {str(e)}')
+            return redirect('memo_upload_views')
+
+    return render(request, 'for_admin/page3.html')
+
 
 
 def memo_delete_view(request):
